@@ -1,8 +1,12 @@
+import 'package:booki/Features/home/presentation/views/home_view.dart';
 import 'package:booki/Features/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
+  static const kLoginView = '/loginView';
+  static const kRegisterView = '/registerView';
+  static const kHomeView = '/homeView';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -24,13 +28,13 @@ abstract class AppRouter {
       //     const RegisterView(),
       //   ),
       // ),
-      // GoRoute(
-      //   path: kHomeView,
-      //   pageBuilder: (context, state) => slidingNavigation(
-      //     state,
-      //     const HomeView(),
-      //   ),
-      // ),
+      GoRoute(
+        path: kHomeView,
+        pageBuilder: (context, state) => slidingNavigation(
+          state,
+          const HomeView(),
+        ),
+      ),
     ],
   );
 
