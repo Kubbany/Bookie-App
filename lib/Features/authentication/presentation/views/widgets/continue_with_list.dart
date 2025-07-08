@@ -1,6 +1,6 @@
 import 'package:booki/Features/authentication/presentation/views/widgets/continue_with_item.dart';
+import 'package:booki/core/utils/app_images.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ContinueWithList extends StatelessWidget {
   const ContinueWithList({super.key});
@@ -11,13 +11,10 @@ class ContinueWithList extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         ContinueWithItem(
-          icon: FontAwesomeIcons.github,
+          image: Assets.imagesFacebookIcon,
         ),
         ContinueWithItem(
-          icon: FontAwesomeIcons.facebookF,
-        ),
-        ContinueWithItem(
-          icon: FontAwesomeIcons.linkedinIn,
+          image: Assets.imagesGoogleIcon,
         ),
       ],
     );

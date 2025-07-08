@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ContinueWithItem extends StatelessWidget {
-  const ContinueWithItem({super.key, required this.icon});
-  final IconData icon;
+  const ContinueWithItem({super.key, required this.image});
+  final String image;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
       child: CircleAvatar(
-        backgroundColor: const Color(0xff131925),
+        backgroundColor: Colors.white,
         radius: 25,
-        child: Icon(
-          icon,
-          color: Colors.white,
-        ),
+        child: SvgPicture.asset(image),
       ),
     );
   }
