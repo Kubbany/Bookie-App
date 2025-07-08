@@ -1,3 +1,5 @@
+import 'package:booki/Features/authentication/presentation/views/login_view.dart';
+import 'package:booki/Features/authentication/presentation/views/register_view.dart';
 import 'package:booki/Features/home/presentation/views/home_view.dart';
 import 'package:booki/Features/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -13,21 +15,20 @@ abstract class AppRouter {
         path: '/',
         builder: (context, state) => const SplashView(),
       ),
-
-      // GoRoute(
-      //   path: kLoginView,
-      //   pageBuilder: (context, state) => slidingNavigation(
-      //     state,
-      //     const LoginView(),
-      //   ),
-      // ),
-      // GoRoute(
-      //   path: kRegisterView,
-      //   pageBuilder: (context, state) => slidingNavigation(
-      //     state,
-      //     const RegisterView(),
-      //   ),
-      // ),
+      GoRoute(
+        path: kLoginView,
+        pageBuilder: (context, state) => slidingNavigation(
+          state,
+          const LoginView(),
+        ),
+      ),
+      GoRoute(
+        path: kRegisterView,
+        pageBuilder: (context, state) => slidingNavigation(
+          state,
+          const RegisterView(),
+        ),
+      ),
       GoRoute(
         path: kHomeView,
         pageBuilder: (context, state) => slidingNavigation(

@@ -16,7 +16,7 @@ class BookieApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color(0xfffafafa),
+        scaffoldBackgroundColor: const Color(0xffefeee5),
         appBarTheme: const AppBarTheme(
           color: Colors.black,
           iconTheme: IconThemeData(

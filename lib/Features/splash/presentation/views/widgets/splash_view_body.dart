@@ -151,7 +151,7 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
       const Duration(seconds: 2),
     );
     if (mounted) {
-      GoRouter.of(context).go(AppRouter.kHomeView);
+      GoRouter.of(context).go(AppRouter.kLoginView);
     }
   }
 
