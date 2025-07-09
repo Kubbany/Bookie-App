@@ -21,6 +21,10 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: const TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.w400,
+      ),
       controller: widget.textEditingController,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: widget.validator ??
