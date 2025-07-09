@@ -22,4 +22,17 @@ class AuthRepoImpl extends AuthRepo {
       return left(ServerFailure(errorMessage: 'An Error Occured, Please Try Again'));
     }
   }
+
+  @override
+  Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(String email, String password) async {
+    try {
+      var user = await firebaseAuthService.createUserWithEmailAndPassword(email: email, password: password);
+
+      return right(UserModel.fromFirebaseUser(user));
+    } on CustomException catch (e) {
+      return left(ServerFailure(errorMessage: e.errorMessage));
+    } catch (e) {
+      return left(ServerFailure(errorMessage: 'An Error Occured, Please Try Again'));
+    }
+  }
 }

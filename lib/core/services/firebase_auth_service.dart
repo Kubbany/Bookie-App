@@ -23,4 +23,26 @@ class FirebaseAuthService {
       throw CustomException(errorMessage: 'An Error Occured, Please Try Again');
     }
   }
+
+  Future<User> signInWithEmailAndPassword({required String email, required String password}) async {
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return credential.user!;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        throw CustomException(errorMessage: 'No User Found For That Email.');
+      } else if (e.code == 'wrong-password') {
+        throw CustomException(errorMessage: 'Wrong Password Provided For That User.');
+      } else if (e.code == 'network-request-failed') {
+        throw CustomException(errorMessage: 'No Network Connection.');
+      } else {
+        throw CustomException(errorMessage: 'An Error Occured, Please Try Again');
+      }
+    } catch (e) {
+      throw CustomException(errorMessage: 'An Error Occured, Please Try Again');
+    }
+  }
 }
