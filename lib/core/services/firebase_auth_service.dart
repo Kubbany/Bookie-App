@@ -32,10 +32,8 @@ class FirebaseAuthService {
       );
       return credential.user!;
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        throw CustomException(errorMessage: 'No User Found For That Email.');
-      } else if (e.code == 'wrong-password') {
-        throw CustomException(errorMessage: 'Wrong Password Provided For That User.');
+      if (e.code == 'invalid-credential') {
+        throw CustomException(errorMessage: 'Invalid Email or Password.');
       } else if (e.code == 'network-request-failed') {
         throw CustomException(errorMessage: 'No Network Connection.');
       } else {

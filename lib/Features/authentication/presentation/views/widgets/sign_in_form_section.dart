@@ -1,7 +1,9 @@
+import 'package:booki/Features/authentication/presentation/managers/login_cubit/login_cubit.dart';
 import 'package:booki/Features/authentication/presentation/views/widgets/sign_in_actions_section.dart';
 import 'package:booki/core/utils/app_validators.dart';
 import 'package:booki/core/utils/widgets/custom_input_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignInFormSection extends StatelessWidget {
   const SignInFormSection({super.key});
@@ -9,11 +11,13 @@ class SignInFormSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: context.read<LoginCubit>().formKey,
+      autovalidateMode: context.read<LoginCubit>().autovalidateMode,
       child: Column(
         children: <Widget>[
           CustomInputField(
             hint: "Enter Your Email",
-            textEditingController: TextEditingController(),
+            textEditingController: context.read<LoginCubit>().email,
             validator: AppValidators.emailValidation,
           ),
           const SizedBox(
@@ -22,7 +26,7 @@ class SignInFormSection extends StatelessWidget {
           CustomInputField(
             isPasswordField: true,
             hint: "Enter Your Password",
-            textEditingController: TextEditingController(),
+            textEditingController: context.read<LoginCubit>().password,
           ),
           const SizedBox(
             height: 10,

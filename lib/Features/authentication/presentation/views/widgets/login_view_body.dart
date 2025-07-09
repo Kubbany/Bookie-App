@@ -1,8 +1,10 @@
+import 'package:booki/Features/authentication/presentation/managers/login_cubit/login_cubit.dart';
 import 'package:booki/Features/authentication/presentation/views/widgets/login_to_register.dart';
 import 'package:booki/Features/authentication/presentation/views/widgets/sign_in_form_section.dart';
 import 'package:booki/Features/splash/presentation/views/widgets/text_logo.dart';
 import 'package:booki/core/utils/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -11,11 +13,10 @@ class LoginViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 18,
         ),
-        width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -43,7 +44,9 @@ class LoginViewBody extends StatelessWidget {
               title: "Sign In",
               titleSize: 18,
               buttonHeight: 50,
-              onPressed: () {},
+              onPressed: () {
+                context.read<LoginCubit>().signInWithEmailAndPassword();
+              },
               borderRadius: 8,
               backgroundColor: const Color(0xFFFF7A00),
             ),

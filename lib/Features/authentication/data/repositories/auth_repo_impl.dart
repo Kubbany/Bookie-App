@@ -26,7 +26,7 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(String email, String password) async {
     try {
-      var user = await firebaseAuthService.createUserWithEmailAndPassword(email: email, password: password);
+      var user = await firebaseAuthService.signInWithEmailAndPassword(email: email, password: password);
 
       return right(UserModel.fromFirebaseUser(user));
     } on CustomException catch (e) {
