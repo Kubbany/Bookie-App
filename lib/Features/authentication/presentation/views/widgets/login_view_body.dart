@@ -1,4 +1,3 @@
-import 'package:booki/Features/authentication/presentation/views/widgets/continue_with_section.dart';
 import 'package:booki/Features/authentication/presentation/views/widgets/login_to_register.dart';
 import 'package:booki/Features/authentication/presentation/views/widgets/sign_in_form_section.dart';
 import 'package:booki/Features/splash/presentation/views/widgets/text_logo.dart';
@@ -47,12 +46,6 @@ class LoginViewBody extends StatelessWidget {
               onPressed: () {},
               borderRadius: 8,
               backgroundColor: const Color(0xFFFF7A00),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            const ContinueWithSection(
-              title: "Or sign in with",
             ),
             const SizedBox(
               height: 15,

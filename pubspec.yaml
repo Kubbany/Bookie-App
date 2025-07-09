@@ -30,6 +30,7 @@ environment:
 dependencies:
   connectivity_plus: ^6.1.4
   cupertino_icons: ^1.0.8
+  firebase_core: ^3.15.1
   flutter:
     sdk: flutter
   flutter_svg: ^2.2.0
@@ -84,4 +85,3 @@ flutter_assets:
   output_path: lib/core/utils/
   filename: app_images.dart
   field_prefix: null
-  
