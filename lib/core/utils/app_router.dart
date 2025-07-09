@@ -44,8 +44,8 @@ abstract class AppRouter {
       key: state.pageKey,
       child: view,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(0.0, 1.0); // Start from bottom
-        const end = Offset.zero; // End at normal position
+        const begin = Offset(0.0, 1.0);
+        const end = Offset.zero;
         const curve = Curves.easeInOut;
 
         final tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));

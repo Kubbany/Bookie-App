@@ -83,7 +83,7 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
               const Duration(seconds: 2),
               () {
                 if (checkingConnection) {
-                  startAnimation(); // Restart animation if still checking
+                  startAnimation();
                 }
               },
             );
@@ -95,7 +95,7 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
 
   void checkInternetRepeatedly() {
     int attempts = 0;
-    const int maxAttempts = 45; // 30 seconds check
+    const int maxAttempts = 45;
 
     connectionTimer = Timer.periodic(
       const Duration(seconds: 1),
@@ -117,8 +117,8 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
   void showNoInternetDialog() {
     if (!mounted) return;
 
-    checkingConnection = false; // Stop checking
-    connectionTimer?.cancel(); // Ensure timer is canceled
+    checkingConnection = false;
+    connectionTimer?.cancel();
 
     showDialog(
       context: context,
@@ -144,8 +144,8 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
       return;
     }
 
-    checkingConnection = false; // Stop checking
-    connectionTimer?.cancel(); // Ensure timer is canceled
+    checkingConnection = false;
+    connectionTimer?.cancel();
 
     await Future.delayed(
       const Duration(seconds: 2),

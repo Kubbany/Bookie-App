@@ -1,5 +1,5 @@
 import 'package:booki/Features/authentication/presentation/managers/login_cubit/login_cubit.dart';
-import 'package:booki/Features/authentication/presentation/views/widgets/login_to_register.dart';
+import 'package:booki/Features/authentication/presentation/views/widgets/dont_have_account.dart';
 import 'package:booki/Features/authentication/presentation/views/widgets/sign_in_form_section.dart';
 import 'package:booki/Features/splash/presentation/views/widgets/text_logo.dart';
 import 'package:booki/core/utils/widgets/custom_button.dart';
@@ -53,7 +53,7 @@ class LoginViewBody extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            const LoginToRegister(),
+            const DontHaveAccount(),
           ],
         ),
       ),

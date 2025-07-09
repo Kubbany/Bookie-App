@@ -2,8 +2,8 @@ import 'package:booki/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginToRegister extends StatelessWidget {
-  const LoginToRegister({super.key});
+class AlreadyHaveAccount extends StatelessWidget {
+  const AlreadyHaveAccount({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class LoginToRegister extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         const Text(
-          "Don't Have an Account?",
+          "Already Have an Account?",
           style: TextStyle(
             fontSize: 16,
             color: Colors.grey,
@@ -20,11 +20,11 @@ class LoginToRegister extends StatelessWidget {
         TextButton(
           onPressed: () {
             GoRouter.of(context).pushReplacement(
-              AppRouter.kRegisterView,
+              AppRouter.kLoginView,
             );
           },
           child: const Text(
-            "Sign Up",
+            "Sign In",
             style: TextStyle(
               fontSize: 16,
               color: Color(0xFFFF7A00),

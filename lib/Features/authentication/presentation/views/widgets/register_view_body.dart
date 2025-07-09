@@ -1,4 +1,4 @@
-import 'package:booki/Features/authentication/presentation/views/widgets/register_to_login.dart';
+import 'package:booki/Features/authentication/presentation/views/widgets/already_have_account.dart';
 import 'package:booki/Features/authentication/presentation/views/widgets/sign_up_form_section.dart';
 import 'package:booki/Features/splash/presentation/views/widgets/text_logo.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,7 @@ class RegisterViewBody extends StatelessWidget {
               height: 26,
             ),
             SignUpFormSection(),
-            RegisterToLogin(),
+            AlreadyHaveAccount(),
           ],
         ),
       ),
