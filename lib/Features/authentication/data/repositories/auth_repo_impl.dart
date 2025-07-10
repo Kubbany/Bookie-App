@@ -19,7 +19,7 @@ class AuthRepoImpl extends AuthRepo {
     } on CustomException catch (e) {
       return left(ServerFailure(errorMessage: e.errorMessage));
     } catch (e) {
-      return left(ServerFailure(errorMessage: 'An Error Occured, Please Try Again'));
+      return left(const ServerFailure(errorMessage: 'An Error Occured, Please Try Again'));
     }
   }
 
@@ -32,7 +32,7 @@ class AuthRepoImpl extends AuthRepo {
     } on CustomException catch (e) {
       return left(ServerFailure(errorMessage: e.errorMessage));
     } catch (e) {
-      return left(ServerFailure(errorMessage: 'An Error Occured, Please Try Again'));
+      return left(const ServerFailure(errorMessage: 'An Error Occured, Please Try Again'));
     }
   }
 }
