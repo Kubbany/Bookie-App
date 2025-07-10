@@ -31,7 +31,10 @@ class _BooksGirdViewBlocConsumerState extends State<BooksGirdViewBlocConsumer> {
         }
       },
       builder: (context, state) {
-        if (state is BooksSuccess || state is BooksPaginationLoading || state is BooksPaginationFailure) {
+        if (state is BooksSuccess ||
+            state is BooksPaginationLoading ||
+            state is BooksPaginationFailure ||
+            state is BooksLoading) {
           return ModalProgressHUD(
             inAsyncCall: state is BooksLoading,
             progressIndicator: const CircularProgressIndicator(

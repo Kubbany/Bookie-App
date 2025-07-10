@@ -1,5 +1,8 @@
+import 'package:booki/Features/home/presentation/manager/books_cubit/books_cubit.dart';
 import 'package:booki/Features/home/presentation/views/widgets/books_grid_view_bloc_consumer.dart';
+import 'package:booki/Features/home/presentation/views/widgets/home_view_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -13,6 +16,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   void initState() {
     super.initState();
+    context.read<BooksCubit>().fetchBooks();
     scrollController = ScrollController();
   }
 
@@ -24,6 +28,13 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BooksGirdViewBlocConsumer(scrollController: scrollController);
+    return Column(
+      children: [
+        const HomeViewAppBar(),
+        Expanded(
+          child: BooksGirdViewBlocConsumer(scrollController: scrollController),
+        ),
+      ],
+    );
   }
 }
