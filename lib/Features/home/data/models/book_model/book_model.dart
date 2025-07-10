@@ -27,7 +27,7 @@ class BookModel extends BookEntity {
   }) : super(
           bookId: id!,
           title: volumeInfo.title ?? "Unknown Book",
-          image: volumeInfo.imageLinks?.thumbnail ?? '',
+          image: volumeInfo.imageLinks?.thumbnail!.replaceFirst('http://', 'https://') ?? '',
           authorName: volumeInfo.authors?.first ?? 'Unknown Author',
           category: volumeInfo.categories?[0] ?? "",
           url: volumeInfo.previewLink ?? "",

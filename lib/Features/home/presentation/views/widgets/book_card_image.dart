@@ -12,7 +12,7 @@ class BookCardImage extends StatelessWidget {
       borderRadius: BorderRadius.circular(12),
       child: AspectRatio(
         aspectRatio: 0.7,
-        child: Image.asset(
+        child: Image.network(
           image,
           fit: BoxFit.fill,
         ),
