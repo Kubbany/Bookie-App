@@ -1,37 +1,31 @@
-import 'package:booki/Features/home/data/models/book_model/book_model.dart';
+import 'package:booki/Features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:booki/Features/home/domain/entites/book_entity.dart';
 import 'package:booki/Features/home/domain/repositories/home_repo.dart';
 import 'package:booki/core/errors/failures.dart';
-import 'package:booki/core/services/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 class HomeRepoImpl extends HomeRepo {
-  final ApiService apiService;
+  final HomeRemoteDataSource homeRemoteDataSource;
 
-  HomeRepoImpl({required this.apiService});
+  HomeRepoImpl({required this.homeRemoteDataSource});
 
   @override
   Future<Either<Failure, List<BookEntity>>> fetchBooks({int pageNumber = 0}) async {
-    try {
-      var data = await apiService.get(
-        endPoint: "volumes?Filtering=free-ebooks&q=fiction",
-      );
-      List<BookModel> books = [];
-      for (var item in data["items"]) {
-        books.add(BookModel.fromJson(item));
-      }
+    List<BookEntity> books = [];
+    //List<BookEntity> books = homeLocalDataSource.fetchFeaturedBooks(pageNumber: pageNumber);
+    if (books.isNotEmpty) {
       return right(books);
-    } on DioException catch (e) {
-      return left(
-        ServerFailure.fromDioException(e),
-      );
-    } catch (e) {
-      return left(
-        ServerFailure(
-          errorMessage: e.toString(),
-        ),
-      );
+    } else {
+      try {
+        books = await homeRemoteDataSource.fetchFeaturedBooks(pageNumber: pageNumber);
+        return right(books);
+      } catch (e) {
+        if (e is DioException) {
+          return left(ServerFailure.fromDioException(e));
+        }
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
     }
   }
 }
