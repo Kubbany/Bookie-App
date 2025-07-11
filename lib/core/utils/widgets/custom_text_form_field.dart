@@ -4,7 +4,7 @@ class CustomTextFormField extends StatefulWidget {
   const CustomTextFormField({
     super.key,
     required this.hintText,
-    required this.prefixIcon,
+    this.prefixIcon,
     this.keyboardType,
     this.textEditingController,
     this.validator,
@@ -14,7 +14,7 @@ class CustomTextFormField extends StatefulWidget {
     this.borderRadius,
   });
   final String hintText;
-  final IconData prefixIcon;
+  final IconData? prefixIcon;
   final Color? fillColor, borderColor;
   final double? verticalContentPadding, borderRadius;
   final TextEditingController? textEditingController;
