@@ -2,6 +2,7 @@ import 'package:booki/Features/home/domain/entites/book_entity.dart';
 import 'package:booki/Features/home/presentation/views/widgets/book_actions.dart';
 import 'package:booki/Features/home/presentation/views/widgets/book_card_image.dart';
 import 'package:booki/Features/home/presentation/views/widgets/book_details.dart';
+import 'package:booki/Features/home/presentation/views/widgets/rating_actions.dart';
 import 'package:booki/Features/home/presentation/views/widgets/rating_and_page_info.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -38,6 +39,9 @@ class BookDetailsViewBody extends StatelessWidget {
         RatingAndPageInfo(
           rating: 0,
           pageCount: book.pageCount!,
+        ),
+        RatingActions(
+          onRatingSelected: (int index) {},
         ),
         Padding(
           padding: const EdgeInsets.symmetric(
