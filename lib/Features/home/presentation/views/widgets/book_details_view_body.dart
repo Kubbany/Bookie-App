@@ -2,6 +2,7 @@ import 'package:booki/Features/home/domain/entites/book_entity.dart';
 import 'package:booki/Features/home/presentation/views/widgets/book_actions.dart';
 import 'package:booki/Features/home/presentation/views/widgets/book_card_image.dart';
 import 'package:booki/Features/home/presentation/views/widgets/book_details.dart';
+import 'package:booki/Features/home/presentation/views/widgets/rating_and_page_info.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -27,12 +28,16 @@ class BookDetailsViewBody extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: MediaQuery.sizeOf(context).width * 0.5,
+          width: MediaQuery.sizeOf(context).width * 0.3,
           child: BookCardImage(image: book.image ?? ''),
         ),
         BookDetails(
           title: book.title,
           author: book.authorName ?? "Unknown Author",
+        ),
+        RatingAndPageInfo(
+          rating: 0,
+          pageCount: book.pageCount!,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(

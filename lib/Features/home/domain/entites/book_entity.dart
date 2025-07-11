@@ -16,6 +16,8 @@ class BookEntity {
   final String url;
   @HiveField(6)
   final String pdf;
+  @HiveField(7)
+  final int? pageCount;
 
   BookEntity({
     required this.bookId,
@@ -25,5 +27,6 @@ class BookEntity {
     required this.category,
     required this.url,
     required this.pdf,
+    required this.pageCount,
   });
 }
