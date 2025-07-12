@@ -1,13 +1,11 @@
 import 'package:booki/Features/home/presentation/views/widgets/info_item.dart';
 import 'package:flutter/material.dart';
 
-class RatingAndPageInfo extends StatelessWidget {
-  final double rating;
+class NumberOfPagesWidget extends StatelessWidget {
   final int pageCount;
 
-  const RatingAndPageInfo({
+  const NumberOfPagesWidget({
     super.key,
-    required this.rating,
     required this.pageCount,
   });
 
@@ -25,18 +23,11 @@ class RatingAndPageInfo extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          InfoItem(
-            value: rating.toString(),
-            label: "Rating",
-          ),
-          InfoItem(
-            value: pageCount.toString(),
-            label: "Number Of Page",
-          ),
-        ],
+      child: Center(
+        child: InfoItem(
+          value: pageCount.toString(),
+          label: "Number Of Pages",
+        ),
       ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:booki/Features/home/presentation/views/widgets/book_actions.dart
 import 'package:booki/Features/home/presentation/views/widgets/book_card_image.dart';
 import 'package:booki/Features/home/presentation/views/widgets/book_details.dart';
 import 'package:booki/Features/home/presentation/views/widgets/rating_actions.dart';
-import 'package:booki/Features/home/presentation/views/widgets/rating_and_page_info.dart';
+import 'package:booki/Features/home/presentation/views/widgets/number_of_pages.dart';
 import 'package:booki/core/utils/app_validators.dart';
 import 'package:booki/core/utils/widgets/custom_button.dart';
 import 'package:booki/core/utils/widgets/custom_text_form_field.dart';
@@ -45,8 +45,7 @@ class BookDetailsViewBody extends StatelessWidget {
                   title: book.title,
                   author: book.authorName ?? "Unknown Author",
                 ),
-                RatingAndPageInfo(
-                  rating: 0,
+                NumberOfPagesWidget(
                   pageCount: book.pageCount!,
                 ),
                 RatingActions(

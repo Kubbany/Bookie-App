@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
-class RatingActions extends StatelessWidget {
+class RatingActions extends StatefulWidget {
   final void Function(int) onRatingSelected;
 
   const RatingActions({super.key, required this.onRatingSelected});
 
+  @override
+  State<RatingActions> createState() => _RatingActionsState();
+}
+
+class _RatingActionsState extends State<RatingActions> {
+  int? selectedIndex;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,12 +34,16 @@ class RatingActions extends StatelessWidget {
             return ElevatedButton(
               style: ElevatedButton.styleFrom(
                 shape: const CircleBorder(),
-                backgroundColor: const Color(0xFFCC9C00),
+                backgroundColor: selectedIndex == index ? Colors.blue : const Color(0xFFCC9C00),
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.all(12),
                 elevation: 2,
               ),
-              onPressed: () => onRatingSelected(rating),
+              onPressed: () {
+                selectedIndex = index;
+                setState(() {});
+                widget.onRatingSelected(rating);
+              },
               child: Text(
                 rating.toString(),
                 style: const TextStyle(fontWeight: FontWeight.bold),

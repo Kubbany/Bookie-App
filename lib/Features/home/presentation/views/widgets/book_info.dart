@@ -33,7 +33,7 @@ class BookInfo extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
         ),
-        const RatingBadge(rating: 4.7),
+        RatingBadge(rating: book.avgRating),
       ],
     );
   }
