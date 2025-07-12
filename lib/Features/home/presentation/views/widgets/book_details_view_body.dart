@@ -1,18 +1,14 @@
 import 'package:booki/Features/home/domain/entites/book_entity.dart';
 import 'package:booki/Features/home/presentation/manager/books_cubit/books_cubit.dart';
+import 'package:booki/Features/home/presentation/views/widgets/arrow_back_button.dart';
 import 'package:booki/Features/home/presentation/views/widgets/book_actions.dart';
-import 'package:booki/Features/home/presentation/views/widgets/book_card_image.dart';
-import 'package:booki/Features/home/presentation/views/widgets/book_details.dart';
-import 'package:booki/Features/home/presentation/views/widgets/number_of_pages.dart';
+import 'package:booki/Features/home/presentation/views/widgets/details_view_book_info.dart';
 import 'package:booki/Features/home/presentation/views/widgets/rating_actions.dart';
-import 'package:booki/core/utils/app_validators.dart';
+import 'package:booki/Features/home/presentation/views/widgets/reviews_section.dart';
 import 'package:booki/core/utils/methods/show_snack_bar_message.dart';
-import 'package:booki/core/utils/widgets/custom_button.dart';
-import 'package:booki/core/utils/widgets/custom_text_form_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
   const BookDetailsViewBody({super.key, required this.book});
@@ -36,30 +32,8 @@ class BookDetailsViewBody extends StatelessWidget {
                 child: Column(
                   spacing: 15,
                   children: <Widget>[
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: IconButton(
-                        onPressed: () {
-                          GoRouter.of(context).pop();
-                        },
-                        icon: Icon(
-                          Icons.arrow_back,
-                          size: 30,
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.sizeOf(context).width * 0.3,
-                      child: BookCardImage(image: book.image ?? ''),
-                    ),
-                    BookDetails(
-                      title: book.title,
-                      author: book.authorName ?? "Unknown Author",
-                    ),
-                    NumberOfPagesWidget(
-                      pageCount: book.pageCount!,
-                    ),
+                    const ArrowBackButton(),
+                    DetailsViewBookInfo(book: book),
                     RatingActions(
                       onRatingSelected: (rating) {
                         context.read<BooksCubit>().submitRating(
@@ -78,33 +52,7 @@ class BookDetailsViewBody extends StatelessWidget {
                         pdf: book.pdf,
                       ),
                     ),
-                    if (book.userRating == null) ...[
-                      CustomTextFormField(
-                        hintText: "Leave Your Review",
-                        verticalContentPadding: 90,
-                        fillColor: Colors.white,
-                        borderColor: Colors.grey,
-                        borderRadius: 10,
-                        textEditingController: TextEditingController(),
-                        validator: AppValidators.requiredField,
-                      ),
-                      CustomButton(
-                        title: "Submit",
-                        titleSize: 18,
-                        onPressed: () {},
-                        borderRadius: 8,
-                        backgroundColor: const Color(0xFFFF7A00),
-                        buttonHeight: 50,
-                      ),
-                    ],
-                    if (book.userRating != null)
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8),
-                        child: Text(
-                          'You rated this ${book.userRating} stars',
-                          style: const TextStyle(color: Colors.green),
-                        ),
-                      ),
+                    const ReviewsSection(),
                   ],
                 ),
               ),
