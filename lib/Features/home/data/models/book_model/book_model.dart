@@ -1,59 +1,69 @@
-import 'package:booki/Features/home/domain/entites/book_entity.dart';
+class BookModel {
+  final String bookId;
 
-import 'access_info.dart';
-import 'sale_info.dart';
-import 'search_info.dart';
-import 'volume_info.dart';
+  final String? image;
 
-class BookModel extends BookEntity {
-  String? kind;
-  String? id;
-  String? etag;
-  String? selfLink;
-  VolumeInfo volumeInfo;
-  SaleInfo? saleInfo;
-  AccessInfo? accessInfo;
-  SearchInfo? searchInfo;
+  final String title;
+
+  final String? authorName;
+
+  final String category;
+
+  final String url;
+
+  final String pdf;
+
+  final int? pageCount;
+
+  final double avgRating;
+
+  final List<String> reviews;
+
+  final String readingStatus;
 
   BookModel({
-    this.kind,
-    this.id,
-    this.etag,
-    this.selfLink,
-    required this.volumeInfo,
-    this.saleInfo,
-    this.accessInfo,
-    this.searchInfo,
-  }) : super(
-          bookId: id!,
-          title: volumeInfo.title ?? "Unknown Book",
-          image: volumeInfo.imageLinks?.thumbnail!.replaceFirst('http://', 'https://') ?? '',
-          authorName: volumeInfo.authors?.first ?? 'Unknown Author',
-          category: volumeInfo.categories?[0] ?? "",
-          url: volumeInfo.previewLink ?? "",
-          pdf: accessInfo?.pdf?.acsTokenLink ?? "",
-          pageCount: volumeInfo.pageCount ?? 0,
-        );
-
-  factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
-        kind: json['kind'] as String?,
-        id: json['id'] as String?,
-        etag: json['etag'] as String?,
-        selfLink: json['selfLink'] as String?,
-        volumeInfo: VolumeInfo.fromJson(json['volumeInfo'] as Map<String, dynamic>),
-        saleInfo: json['saleInfo'] == null ? null : SaleInfo.fromJson(json['saleInfo'] as Map<String, dynamic>),
-        accessInfo: json['accessInfo'] == null ? null : AccessInfo.fromJson(json['accessInfo'] as Map<String, dynamic>),
-        searchInfo: json['searchInfo'] == null ? null : SearchInfo.fromJson(json['searchInfo'] as Map<String, dynamic>),
-      );
+    required this.bookId,
+    required this.image,
+    required this.title,
+    required this.authorName,
+    required this.category,
+    required this.url,
+    required this.pdf,
+    required this.pageCount,
+    required this.avgRating,
+    required this.reviews,
+    required this.readingStatus,
+  });
 
   Map<String, dynamic> toJson() => {
-        'kind': kind,
-        'id': id,
-        'etag': etag,
-        'selfLink': selfLink,
-        'volumeInfo': volumeInfo.toJson(),
-        'saleInfo': saleInfo?.toJson(),
-        'accessInfo': accessInfo?.toJson(),
-        'searchInfo': searchInfo?.toJson(),
+        'bookId': bookId,
+        'title': title,
+        'image': image,
+        'authorName': authorName,
+        'category': category,
+        'url': url,
+        'pdf': pdf,
+        'pageCount': pageCount,
+        'reviews': reviews,
+        'avgRating': avgRating,
+        'readingStatus': readingStatus,
       };
+
+  factory BookModel.fromJson(Map<String, dynamic> map) {
+    return BookModel(
+      bookId: map['bookId'] as String,
+      image: map['image'] as String?,
+      title: map['title'] as String,
+      authorName: map['authorName'] as String?,
+      category: map['category'] as String,
+      url: map['url'] as String,
+      pdf: map['pdf'] as String,
+      pageCount: map['pageCount'] as int?,
+      avgRating: (map['avgRating'] as num).toDouble(), // Handle both int and double
+      reviews: List<String>.from(
+        map['reviews']?.map((item) => item.toString()) ?? [], // Handle null and dynamic types
+      ),
+      readingStatus: map['readingStatus'] as String,
+    );
+  }
 }

@@ -18,6 +18,12 @@ class BookEntity {
   final String pdf;
   @HiveField(7)
   final int? pageCount;
+  @HiveField(8)
+  final double avgRating;
+  @HiveField(9)
+  final List<String> reviews;
+  @HiveField(10)
+  final String readingStatus;
 
   BookEntity({
     required this.bookId,
@@ -28,5 +34,8 @@ class BookEntity {
     required this.url,
     required this.pdf,
     required this.pageCount,
+    required this.avgRating,
+    required this.reviews,
+    required this.readingStatus,
   });
 }

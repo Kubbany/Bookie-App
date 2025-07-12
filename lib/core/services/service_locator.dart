@@ -4,6 +4,7 @@ import 'package:booki/Features/home/data/data_sources/home_remote_data_source.da
 import 'package:booki/Features/home/data/repositories/home_repo_impl.dart';
 import 'package:booki/core/services/api_service.dart';
 import 'package:booki/core/services/firebase_auth_service.dart';
+import 'package:booki/core/services/firebase_database_service.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -35,7 +36,7 @@ void setupServiceLocator() {
 
   getIt.registerSingleton<HomeRemoteDataSourceImplementation>(
     HomeRemoteDataSourceImplementation(
-      getIt.get<ApiService>(),
+      FirebaseDatabaseService(),
     ),
   );
 
