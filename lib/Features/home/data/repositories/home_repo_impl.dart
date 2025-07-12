@@ -28,4 +28,14 @@ class HomeRepoImpl extends HomeRepo {
       }
     }
   }
+
+  @override
+  Future<Either<Failure, void>> submitRating(String bookId, String userId, double rating) async {
+    try {
+      await homeRemoteDataSource.submitRating(bookId, userId, rating);
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure(errorMessage: e.toString()));
+    }
+  }
 }

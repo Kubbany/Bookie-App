@@ -14,5 +14,7 @@ extension BookMapper on BookModel {
         avgRating: avgRating,
         reviews: reviews,
         readingStatus: readingStatus,
+        userRatings: userRatings,
+        userRating: userRatings['currentUserId'],
       );
 }

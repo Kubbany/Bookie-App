@@ -26,3 +26,9 @@ final class BooksFailure extends BooksState {
 
   BooksFailure({required this.errorMessage});
 }
+
+class BooksRatingSuccess extends BooksState {
+  final List<BookEntity> books;
+
+  BooksRatingSuccess({required this.books});
+}

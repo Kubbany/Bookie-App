@@ -20,7 +20,7 @@ class BookModel {
   final List<String> reviews;
 
   final String readingStatus;
-
+  final Map<String, double> userRatings;
   BookModel({
     required this.bookId,
     required this.image,
@@ -33,6 +33,7 @@ class BookModel {
     required this.avgRating,
     required this.reviews,
     required this.readingStatus,
+    required this.userRatings,
   });
 
   Map<String, dynamic> toJson() => {
@@ -47,6 +48,7 @@ class BookModel {
         'reviews': reviews,
         'avgRating': avgRating,
         'readingStatus': readingStatus,
+        'userRatings': userRatings,
       };
 
   factory BookModel.fromJson(Map<String, dynamic> map) {
@@ -64,6 +66,7 @@ class BookModel {
         map['reviews']?.map((item) => item.toString()) ?? [], // Handle null and dynamic types
       ),
       readingStatus: map['readingStatus'] as String,
+      userRatings: Map<String, double>.from(map['userRatings'] ?? {}),
     );
   }
 }

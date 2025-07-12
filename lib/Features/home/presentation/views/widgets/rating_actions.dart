@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class RatingActions extends StatefulWidget {
-  final void Function(int) onRatingSelected;
-
-  const RatingActions({super.key, required this.onRatingSelected});
+  final void Function(double) onRatingSelected;
+  final int? initialRating;
+  const RatingActions({super.key, required this.onRatingSelected, this.initialRating});
 
   @override
   State<RatingActions> createState() => _RatingActionsState();
@@ -11,6 +11,14 @@ class RatingActions extends StatefulWidget {
 
 class _RatingActionsState extends State<RatingActions> {
   int? selectedIndex;
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialRating != null) {
+      selectedIndex = widget.initialRating! - 1;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,7 +50,7 @@ class _RatingActionsState extends State<RatingActions> {
               onPressed: () {
                 selectedIndex = index;
                 setState(() {});
-                widget.onRatingSelected(rating);
+                widget.onRatingSelected(rating.toDouble());
               },
               child: Text(
                 rating.toString(),

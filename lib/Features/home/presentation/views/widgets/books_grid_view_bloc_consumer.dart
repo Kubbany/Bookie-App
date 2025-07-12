@@ -25,16 +25,13 @@ class _BooksGirdViewBlocConsumerState extends State<BooksGirdViewBlocConsumer> {
     return BlocConsumer<BooksCubit, BooksState>(
       listener: (context, state) {
         if (state is BooksSuccess) {
-          books.addAll(state.books);
+          books = state.books;
         } else if (state is BooksPaginationFailure) {
           showSnackBarMessage(context, state.errorMessage);
         }
       },
       builder: (context, state) {
-        if (state is BooksSuccess ||
-            state is BooksPaginationLoading ||
-            state is BooksPaginationFailure ||
-            state is BooksLoading) {
+        if (state is BooksSuccess || state is BooksRatingSuccess || state is BooksLoading) {
           return ModalProgressHUD(
             inAsyncCall: state is BooksLoading,
             progressIndicator: const CircularProgressIndicator(
