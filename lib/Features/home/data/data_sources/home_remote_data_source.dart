@@ -1,5 +1,5 @@
 import 'package:booki/Features/home/data/extenstions/book_mapper.dart';
-import 'package:booki/Features/home/data/models/book_model/book_model.dart';
+import 'package:booki/Features/home/data/models/book_model.dart';
 import 'package:booki/Features/home/domain/entites/book_entity.dart';
 import 'package:booki/constatns.dart';
 import 'package:booki/core/services/database_service.dart';
