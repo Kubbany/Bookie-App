@@ -11,14 +11,18 @@ class HomeViewAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomAppBar(
-      leading: IconButton(
-        onPressed: () {},
-        icon: Icon(
-          Icons.menu_rounded,
-          color: Colors.grey[700],
-          size: 30,
-        ),
-      ),
+      leading: Builder(builder: (context) {
+        return IconButton(
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
+          icon: Icon(
+            Icons.menu_rounded,
+            color: Colors.grey[700],
+            size: 30,
+          ),
+        );
+      }),
       trailingIcon: FontAwesomeIcons.magnifyingGlass,
       trailingOnPressed: () {
         showSearch(

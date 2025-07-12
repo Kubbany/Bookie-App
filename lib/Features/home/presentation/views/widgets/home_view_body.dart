@@ -12,7 +12,6 @@ class HomeViewBody extends StatefulWidget {
 }
 
 class _HomeViewBodyState extends State<HomeViewBody> {
-  late ScrollController scrollController;
   @override
   void initState() {
     super.initState();

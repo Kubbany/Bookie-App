@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:booki/Features/home/presentation/manager/reviews_cubit/reviews_cubit.dart';
 import 'package:booki/core/utils/app_validators.dart';
 import 'package:booki/core/utils/methods/show_snack_bar_message.dart';
@@ -44,7 +42,6 @@ class SubmitReviewSection extends StatelessWidget {
                 title: "Submit",
                 titleSize: 18,
                 onPressed: () {
-                  log(context.read<ReviewsCubit>().review.text);
                   context.read<ReviewsCubit>().submitReview(bookId);
                 },
                 borderRadius: 8,
