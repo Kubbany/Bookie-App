@@ -13,7 +13,9 @@ class BooksCubit extends Cubit<BooksState> {
   BooksCubit(this.booksUseCase, {this.submitRatingUseCase}) : super(BooksInitial());
   final FetchBooksUseCase booksUseCase;
   final SubmitRatingUseCase? submitRatingUseCase;
+  final userId = FirebaseAuth.instance.currentUser!.uid;
   List<BookEntity> booksList = [];
+
   Future<void> fetchBooks() async {
     emit(BooksLoading());
 
@@ -35,7 +37,7 @@ class BooksCubit extends Cubit<BooksState> {
   }) async {
     final result = await submitRatingUseCase!.execute(
       bookId: bookId,
-      userId: FirebaseAuth.instance.currentUser!.uid,
+      userId: userId,
       rating: rating,
     );
 

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:booki/Features/home/data/extenstions/book_mapper.dart';
 import 'package:booki/Features/home/data/models/book_model.dart';
 import 'package:booki/Features/home/domain/entites/book_entity.dart';
@@ -8,6 +10,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 abstract class HomeRemoteDataSource {
   Future<List<BookEntity>> fetchBooks({int pageNumber = 0});
   Future<void> submitRating(String bookId, String userId, double rating);
+  Future<List<String>> getReviews(String bookId);
+  Future<void> submitReview(String bookId, String userId, String review);
 }
 
 class HomeRemoteDataSourceImplementation extends HomeRemoteDataSource {
@@ -20,7 +24,7 @@ class HomeRemoteDataSourceImplementation extends HomeRemoteDataSource {
     );
     return await Future.wait(data.map((bookData) async {
       // Check if user has rated this book
-      final userRating = await _getUserRating(bookData['bookId']);
+      final userRating = await getUserRating(bookData['bookId']);
       return BookModel.fromJson({
         ...bookData,
         'userRating': userRating, // Include user's rating
@@ -32,10 +36,9 @@ class HomeRemoteDataSourceImplementation extends HomeRemoteDataSource {
   Future<void> submitRating(String bookId, String userId, double rating) async {
     // 1. Get current book data
     final bookData = await databaseService.getDataById(kBooks, bookId);
-    if (bookData == null) throw Exception('Book not found');
 
     // 2. Update ratings
-    final userRatings = Map<String, double>.from(bookData['userRatings'] ?? {});
+    final userRatings = Map<String, double>.from(bookData!['userRatings'] ?? {});
     userRatings[userId] = rating;
 
     // 3. Calculate new average
@@ -52,7 +55,26 @@ class HomeRemoteDataSourceImplementation extends HomeRemoteDataSource {
     );
   }
 
-  Future<double?> _getUserRating(String bookId) async {
+  @override
+  Future<List<String>> getReviews(String bookId) async {
+    final bookData = await databaseService.getDataById(kBooks, bookId);
+    return List<String>.from(bookData?['reviews'] ?? []);
+  }
+
+  @override
+  Future<void> submitReview(String bookId, String userId, String review) async {
+    final bookData = await databaseService.getDataById(kBooks, bookId);
+    final currentReviews = List<String>.from(bookData?['reviews'] ?? []);
+    currentReviews.add(review);
+    log(currentReviews.length.toString());
+    await databaseService.editData(
+      kBooks,
+      bookId,
+      {'reviews': currentReviews},
+    );
+  }
+
+  Future<double?> getUserRating(String bookId) async {
     final bookData = await databaseService.getDataById(kBooks, bookId);
     final ratings = bookData?['userRatings'] as Map<String, dynamic>? ?? {};
     return ratings[FirebaseAuth.instance.currentUser!.uid] as double?;

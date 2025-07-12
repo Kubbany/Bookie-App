@@ -4,7 +4,8 @@ import 'package:booki/Features/home/presentation/views/widgets/arrow_back_button
 import 'package:booki/Features/home/presentation/views/widgets/book_actions.dart';
 import 'package:booki/Features/home/presentation/views/widgets/details_view_book_info.dart';
 import 'package:booki/Features/home/presentation/views/widgets/rating_actions.dart';
-import 'package:booki/Features/home/presentation/views/widgets/reviews_section.dart';
+import 'package:booki/Features/home/presentation/views/widgets/reviews_list_view.dart';
+import 'package:booki/Features/home/presentation/views/widgets/submit_review_section.dart';
 import 'package:booki/core/utils/methods/show_snack_bar_message.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -52,10 +53,11 @@ class BookDetailsViewBody extends StatelessWidget {
                         pdf: book.pdf,
                       ),
                     ),
-                    const ReviewsSection(),
+                    SubmitReviewSection(bookId: book.bookId),
                   ],
                 ),
               ),
+              const ReviewsListView(),
             ],
           ),
         );

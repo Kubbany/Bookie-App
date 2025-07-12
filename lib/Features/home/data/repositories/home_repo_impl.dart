@@ -37,4 +37,24 @@ class HomeRepoImpl extends HomeRepo {
       return Left(ServerFailure(errorMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, List<String>>> getReviews(String bookId) async {
+    try {
+      final reviews = await homeRemoteDataSource.getReviews(bookId);
+      return Right(reviews);
+    } catch (e) {
+      return Left(ServerFailure(errorMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> submitReview(String bookId, String userId, String review) async {
+    try {
+      await homeRemoteDataSource.submitReview(bookId, userId, review);
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure(errorMessage: e.toString()));
+    }
+  }
 }

@@ -1,5 +1,4 @@
 import 'package:booki/Features/authentication/presentation/managers/login_cubit/login_cubit.dart';
-import 'package:booki/Features/authentication/presentation/views/widgets/sign_in_actions_section.dart';
 import 'package:booki/core/utils/app_validators.dart';
 import 'package:booki/core/utils/widgets/custom_input_field.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +30,6 @@ class SignInFormSection extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          const SignInActionsSection(),
           const SizedBox(
             height: 10,
           ),

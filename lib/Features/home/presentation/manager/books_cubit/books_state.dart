@@ -7,14 +7,6 @@ final class BooksInitial extends BooksState {}
 
 final class BooksLoading extends BooksState {}
 
-final class BooksPaginationLoading extends BooksState {}
-
-final class BooksPaginationFailure extends BooksState {
-  final String errorMessage;
-
-  BooksPaginationFailure({required this.errorMessage});
-}
-
 final class BooksSuccess extends BooksState {
   final List<BookEntity> books;
 

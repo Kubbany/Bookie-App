@@ -6,4 +6,8 @@ abstract class HomeRepo {
   Future<Either<Failure, List<BookEntity>>> fetchBooks();
 
   Future<Either<Failure, void>> submitRating(String bookId, String userId, double rating);
+
+  Future<Either<Failure, List<String>>> getReviews(String bookId);
+
+  Future<Either<Failure, void>> submitReview(String bookId, String userId, String review);
 }

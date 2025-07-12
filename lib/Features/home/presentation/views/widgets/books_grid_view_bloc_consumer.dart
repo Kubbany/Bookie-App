@@ -1,7 +1,6 @@
 import 'package:booki/Features/home/domain/entites/book_entity.dart';
 import 'package:booki/Features/home/presentation/manager/books_cubit/books_cubit.dart';
 import 'package:booki/Features/home/presentation/views/widgets/books_grid_view.dart';
-import 'package:booki/core/utils/methods/show_snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -23,8 +22,6 @@ class _BooksGirdViewBlocConsumerState extends State<BooksGirdViewBlocConsumer> {
       listener: (context, state) {
         if (state is BooksSuccess) {
           books = state.books;
-        } else if (state is BooksPaginationFailure) {
-          showSnackBarMessage(context, state.errorMessage);
         }
       },
       builder: (context, state) {
