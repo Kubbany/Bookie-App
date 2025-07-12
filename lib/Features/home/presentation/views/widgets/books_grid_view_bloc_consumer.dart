@@ -9,10 +9,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 class BooksGirdViewBlocConsumer extends StatefulWidget {
   const BooksGirdViewBlocConsumer({
     super.key,
-    required this.scrollController,
   });
-
-  final ScrollController scrollController;
 
   @override
   State<BooksGirdViewBlocConsumer> createState() => _BooksGirdViewBlocConsumerState();
@@ -39,7 +36,6 @@ class _BooksGirdViewBlocConsumerState extends State<BooksGirdViewBlocConsumer> {
             ),
             child: BooksGridView(
               books: books,
-              scrollController: widget.scrollController,
             ),
           );
         } else {

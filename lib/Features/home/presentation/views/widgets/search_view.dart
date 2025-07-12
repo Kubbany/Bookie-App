@@ -65,7 +65,6 @@ class SearchView extends SearchDelegate {
                     return Expanded(
                       child: BooksGridView(
                         books: results,
-                        scrollController: ScrollController(),
                       ),
                     );
                   } else if (state is BooksFailure) {

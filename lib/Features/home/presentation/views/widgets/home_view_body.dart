@@ -17,22 +17,15 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   void initState() {
     super.initState();
     context.read<BooksCubit>().fetchBooks();
-    scrollController = ScrollController();
-  }
-
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const HomeViewAppBar(),
+        HomeViewAppBar(),
         Expanded(
-          child: BooksGirdViewBlocConsumer(scrollController: scrollController),
+          child: BooksGirdViewBlocConsumer(),
         ),
       ],
     );

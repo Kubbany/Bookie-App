@@ -14,21 +14,13 @@ class BooksCubit extends Cubit<BooksState> {
   final FetchBooksUseCase booksUseCase;
   final SubmitRatingUseCase? submitRatingUseCase;
   List<BookEntity> booksList = [];
-  Future<void> fetchBooks({int pageNumber = 0}) async {
-    if (pageNumber == 0) {
-      emit(BooksLoading());
-    } else {
-      emit(BooksPaginationLoading());
-    }
+  Future<void> fetchBooks() async {
+    emit(BooksLoading());
 
-    Either<Failure, List<BookEntity>> result = await booksUseCase.execute(pageNumber);
+    Either<Failure, List<BookEntity>> result = await booksUseCase.execute();
     result.fold(
       (failure) {
-        if (pageNumber == 0) {
-          emit(BooksFailure(errorMessage: failure.errorMessage));
-        } else {
-          emit(BooksPaginationFailure(errorMessage: failure.errorMessage));
-        }
+        emit(BooksFailure(errorMessage: failure.errorMessage));
       },
       (books) {
         booksList = books;
@@ -52,7 +44,7 @@ class BooksCubit extends Cubit<BooksState> {
         emit(BooksFailure(errorMessage: failure.errorMessage));
       },
       (_) {
-        fetchBooks(pageNumber: 0);
+        fetchBooks();
         emit(BooksRatingSuccess(books: booksList));
       },
     );
