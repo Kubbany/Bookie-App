@@ -8,7 +8,7 @@ import 'package:booki/core/services/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class HomeRemoteDataSource {
-  Future<List<BookEntity>> fetchBooks({int pageNumber = 0});
+  Future<List<BookEntity>> fetchBooks();
   Future<void> submitRating(String bookId, String userId, double rating);
   Future<List<String>> getReviews(String bookId);
   Future<void> submitReview(String bookId, String userId, String review);
@@ -18,7 +18,7 @@ class HomeRemoteDataSourceImplementation extends HomeRemoteDataSource {
   final DatabaseService databaseService;
   HomeRemoteDataSourceImplementation(this.databaseService);
   @override
-  Future<List<BookEntity>> fetchBooks({int pageNumber = 0}) async {
+  Future<List<BookEntity>> fetchBooks() async {
     List<Map<String, dynamic>> data = await databaseService.getData(
       kBooks,
     );

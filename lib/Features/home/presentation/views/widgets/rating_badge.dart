@@ -26,7 +26,7 @@ class RatingBadge extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           Text(
-            rating.toString(),
+            rating.toStringAsFixed(1),
             style: const TextStyle(
               fontSize: 14,
               color: Color(0xFFB9CC00),

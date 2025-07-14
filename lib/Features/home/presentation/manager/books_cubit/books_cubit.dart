@@ -30,6 +30,20 @@ class BooksCubit extends Cubit<BooksState> {
     );
   }
 
+  void filterBooks({String? category, double? rating}) {
+    final filtered = booksList.where((book) {
+      final categoryMatch = category == null || book.category == category;
+      final ratingMatch = rating == null || book.avgRating >= rating;
+      return categoryMatch && ratingMatch;
+    }).toList();
+
+    emit(BooksSuccess(books: filtered));
+  }
+
+  void clearFilters() {
+    emit(BooksSuccess(books: booksList));
+  }
+
   Future<void> submitRating({
     required String bookId,
     required double rating,
